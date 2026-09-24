@@ -1,0 +1,3074 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Convenios de Pago</title>
+
+  <style>
+
+    :root {
+      --fondo: #f4f7fb;
+      --tarjeta: #ffffff;
+      --texto: #172033;
+      --texto-secundario: #687386;
+
+      --azul: #3157d5;
+      --azul-oscuro: #2445b5;
+
+      --verde: #18794e;
+
+      --amarillo: #9a6700;
+      --amarillo-fondo: #fff6d6;
+
+      --rojo: #b42318;
+      --rojo-fondo: #fff0ee;
+
+      --borde: #dfe5ef;
+
+      --sombra:
+        0 10px 30px rgba(29, 41, 57, 0.08);
+
+      --radio: 18px;
+    }
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    body {
+      margin: 0;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background: var(--fondo);
+      color: var(--texto);
+    }
+
+
+    .contenedor {
+      max-width: 1100px;
+
+      margin: auto;
+
+      padding:
+        28px
+        18px
+        60px;
+    }
+
+
+    /* ===============================
+       ENCABEZADO
+    =============================== */
+
+    .hero {
+      background:
+        linear-gradient(
+          135deg,
+          #2445b5,
+          #5575e9
+        );
+
+      color: white;
+
+      border-radius: 24px;
+
+      padding: 28px;
+
+      margin-bottom: 20px;
+
+      box-shadow: var(--sombra);
+    }
+
+
+    .hero small {
+      opacity: 0.85;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1px;
+
+      font-weight: bold;
+    }
+
+
+    .hero h1 {
+      margin:
+        8px
+        0
+        10px;
+
+      font-size: 38px;
+    }
+
+
+    .hero p {
+      margin: 0;
+
+      max-width: 800px;
+
+      line-height: 1.5;
+
+      opacity: 0.95;
+    }
+
+
+    /* ===============================
+       TARJETAS
+    =============================== */
+
+    .grid {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr;
+
+      gap: 20px;
+    }
+
+
+    .card {
+      background: var(--tarjeta);
+
+      border:
+        1px
+        solid
+        var(--borde);
+
+      border-radius: var(--radio);
+
+      padding: 22px;
+
+      margin-bottom: 20px;
+
+      box-shadow: var(--sombra);
+    }
+
+
+    .card h2 {
+      margin:
+        0
+        0
+        7px;
+
+      font-size: 21px;
+    }
+
+
+    .subtitulo {
+      color: var(--texto-secundario);
+
+      margin:
+        0
+        0
+        18px;
+
+      line-height: 1.45;
+    }
+
+
+    /* ===============================
+       FORMULARIOS
+    =============================== */
+
+    .campo {
+      margin-bottom: 15px;
+    }
+
+
+    label {
+      display: block;
+
+      font-size: 14px;
+
+      font-weight: bold;
+
+      margin-bottom: 7px;
+    }
+
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+
+      border:
+        1px
+        solid
+        #cdd5df;
+
+      border-radius: 12px;
+
+      padding:
+        12px
+        13px;
+
+      font: inherit;
+
+      color: var(--texto);
+
+      background: white;
+
+      outline: none;
+    }
+
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #5575e9;
+
+      box-shadow:
+        0
+        0
+        0
+        3px
+        rgba(85,117,233,.14);
+    }
+
+
+    textarea {
+      resize: vertical;
+
+      min-height: 90px;
+    }
+
+
+    .fila2 {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr;
+
+      gap: 14px;
+    }
+
+
+    .fila3 {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr
+        1fr;
+
+      gap: 14px;
+    }
+
+
+    /* ===============================
+       CAMPOS DINERO
+    =============================== */
+
+    .dinero {
+      display: flex;
+
+      align-items: center;
+
+      border:
+        1px
+        solid
+        #cdd5df;
+
+      border-radius: 12px;
+
+      background: white;
+
+      overflow: hidden;
+    }
+
+
+    .dinero:focus-within {
+      border-color: #5575e9;
+
+      box-shadow:
+        0
+        0
+        0
+        3px
+        rgba(85,117,233,.14);
+    }
+
+
+    .dinero span {
+      padding-left: 13px;
+
+      font-weight: bold;
+
+      color: var(--texto-secundario);
+    }
+
+
+    .dinero input {
+      border: 0;
+
+      box-shadow: none !important;
+    }
+
+
+    /* ===============================
+       CHECKBOX
+    =============================== */
+
+    .checks {
+      display: grid;
+
+      gap: 10px;
+    }
+
+
+    .check {
+      display: flex;
+
+      align-items: flex-start;
+
+      gap: 10px;
+
+      padding:
+        11px
+        12px;
+
+      border:
+        1px
+        solid
+        var(--borde);
+
+      border-radius: 12px;
+    }
+
+
+    .check input {
+      width: 18px;
+
+      height: 18px;
+
+      margin-top: 2px;
+    }
+
+
+    .check label {
+      margin: 0;
+
+      font-weight: 600;
+    }
+
+
+    /* ===============================
+       SWITCH CONVENIO
+    =============================== */
+
+    .switch {
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      margin:
+        8px
+        0
+        15px;
+    }
+
+
+    .switch input {
+      width: 18px;
+
+      height: 18px;
+    }
+
+
+    .switch label {
+      margin: 0;
+    }
+
+
+    /* ===============================
+       BOTONES
+    =============================== */
+
+    .botones {
+      display: flex;
+
+      gap: 10px;
+
+      flex-wrap: wrap;
+    }
+
+
+    button {
+      border: 0;
+
+      border-radius: 12px;
+
+      padding:
+        12px
+        16px;
+
+      font: inherit;
+
+      font-weight: bold;
+
+      cursor: pointer;
+    }
+
+
+    .primario {
+      background: var(--azul);
+
+      color: white;
+    }
+
+
+    .primario:hover {
+      background: var(--azul-oscuro);
+    }
+
+
+    .secundario {
+      background: #edf1f7;
+
+      color: #26334d;
+    }
+
+
+    .verde {
+      background: var(--verde);
+
+      color: white;
+    }
+
+
+    /* ===============================
+       MENSAJES
+    =============================== */
+
+    .oculto {
+      display: none !important;
+    }
+
+
+    .mensaje {
+      padding:
+        12px
+        14px;
+
+      border-radius: 12px;
+
+      margin:
+        14px
+        0;
+
+      font-size: 14px;
+
+      line-height: 1.45;
+    }
+
+
+    .mensaje.info {
+      background: #eef4ff;
+
+      color: #2346a2;
+
+      border:
+        1px
+        solid
+        #ccd9ff;
+    }
+
+
+    .mensaje.error {
+      background: var(--rojo-fondo);
+
+      color: var(--rojo);
+
+      border:
+        1px
+        solid
+        #ffd2cd;
+    }
+
+
+    .estado {
+      display: inline-flex;
+
+      align-items: center;
+
+      border-radius: 100px;
+
+      padding:
+        7px
+        10px;
+
+      font-size: 13px;
+
+      font-weight: bold;
+
+      background: #edf1f7;
+
+      color: #43506a;
+    }
+
+
+    .estado.ok {
+      background: #eaf7f0;
+
+      color: var(--verde);
+    }
+
+
+    .estado.advertencia {
+      background: var(--amarillo-fondo);
+
+      color: var(--amarillo);
+    }
+
+
+    /* ===============================
+       RESULTADOS
+    =============================== */
+
+    .tramo {
+      padding:
+        13px
+        14px;
+
+      border-radius: 13px;
+
+      background: #eef4ff;
+
+      border:
+        1px
+        solid
+        #ccd9ff;
+
+      font-weight: bold;
+
+      color: #2346a2;
+
+      margin-bottom: 15px;
+    }
+
+
+    .resumen {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 12px;
+
+      margin:
+        16px
+        0;
+    }
+
+
+    .metrica {
+      background: #f7f9fc;
+
+      border:
+        1px
+        solid
+        var(--borde);
+
+      border-radius: 14px;
+
+      padding: 14px;
+    }
+
+
+    .metrica span {
+      display: block;
+
+      color: var(--texto-secundario);
+
+      font-size: 13px;
+
+      margin-bottom: 5px;
+    }
+
+
+    .metrica strong {
+      font-size: 18px;
+    }
+
+
+    /* ===============================
+       CUOTAS
+    =============================== */
+
+    .cuotas {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 10px;
+    }
+
+
+    .cuota {
+      border:
+        1px
+        solid
+        var(--borde);
+
+      border-radius: 14px;
+
+      padding: 12px;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      cursor: pointer;
+    }
+
+
+    .cuota:hover {
+      border-color: #9fb2f2;
+    }
+
+
+    .cuota.seleccionada {
+      border-color: var(--azul);
+
+      background: #f2f5ff;
+    }
+
+
+    .cuota input {
+      width: 18px;
+
+      height: 18px;
+    }
+
+
+    .cuota div {
+      display: flex;
+
+      flex-direction: column;
+    }
+
+
+    .cuota span {
+      color: var(--texto-secundario);
+
+      font-size: 13px;
+    }
+
+
+    /* ===============================
+       BLOC DE NOTAS
+    =============================== */
+
+    pre {
+      white-space: pre-wrap;
+
+      word-break: break-word;
+
+      background: #101828;
+
+      color: #f8fafc;
+
+      border-radius: 14px;
+
+      padding: 16px;
+
+      line-height: 1.55;
+
+      min-height: 180px;
+
+      margin: 0;
+    }
+
+
+    .copiar {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      margin-top: 12px;
+
+      flex-wrap: wrap;
+    }
+
+
+    /* ===============================
+       UF MANUAL
+    =============================== */
+
+    .uf-manual {
+      display: flex;
+
+      align-items: end;
+
+      gap: 10px;
+
+      margin-top: 12px;
+    }
+
+
+    .uf-manual .campo {
+      margin: 0;
+
+      flex: 1;
+    }
+
+
+    /* ===============================
+       FOOTER
+    =============================== */
+
+    footer {
+      text-align: center;
+
+      color: var(--texto-secundario);
+
+      font-size: 13px;
+
+      margin-top: 25px;
+    }
+
+
+    /* ===============================
+       RESPONSIVE
+    =============================== */
+
+    @media (max-width: 820px) {
+
+      .grid,
+      .fila3,
+      .resumen {
+        grid-template-columns: 1fr;
+      }
+
+
+      .cuotas {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      .fila2 {
+        grid-template-columns: 1fr;
+      }
+
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+<div class="contenedor">
+
+
+  <!-- ENCABEZADO -->
+
+  <section class="hero">
+
+    <small>
+      Herramienta de apoyo
+    </small>
+
+    <h1>
+      Convenios de Pago
+    </h1>
+
+    <p>
+      Completa los antecedentes de la llamada,
+      calcula el convenio y genera automáticamente
+      un registro listo para copiar y pegar.
+    </p>
+
+  </section>
+
+
+
+  <!-- PAUTA + REGLAS -->
+
+  <div class="grid">
+
+
+    <section class="card">
+
+      <h2>
+        1. Pauta de revisión
+      </h2>
+
+      <p class="subtitulo">
+
+        <span id="contadorChecks">
+          0 de 5 revisados
+        </span>
+
+      </p>
+
+
+      <div class="checks">
+
+
+        <div class="check">
+
+          <input
+            class="checkRevision"
+            type="checkbox"
+          >
+
+          <label>
+            Revisar si el suministro está bloqueado.
+          </label>
+
+        </div>
+
+
+        <div class="check">
+
+          <input
+            class="checkRevision"
+            type="checkbox"
+          >
+
+          <label>
+            Verificar si existe un convenio vigente.
+          </label>
+
+        </div>
+
+
+        <div class="check">
+
+          <input
+            class="checkRevision"
+            type="checkbox"
+          >
+
+          <label>
+            Revisar cuotas pendientes y valor de cuota.
+          </label>
+
+        </div>
+
+
+        <div class="check">
+
+          <input
+            class="checkRevision"
+            type="checkbox"
+          >
+
+          <label>
+            Solicitar caducar el convenio si corresponde.
+          </label>
+
+        </div>
+
+
+        <div class="check">
+
+          <input
+            class="checkRevision"
+            type="checkbox"
+          >
+
+          <label>
+            Confirmar la deuda que se incorporará al convenio.
+          </label>
+
+        </div>
+
+
+      </div>
+
+
+      <div
+        class="botones"
+        style="margin-top: 15px;"
+      >
+
+        <button
+          id="limpiarPauta"
+          class="secundario"
+        >
+          Limpiar pauta
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <section class="card">
+
+      <h2>
+        Reglas de convenio
+      </h2>
+
+
+      <p class="subtitulo">
+
+        El tramo se determina utilizando
+        el monto total a convenir.
+
+      </p>
+
+
+      <div class="mensaje info">
+
+        <strong>
+          Hasta 50 UF:
+        </strong>
+
+        20% de pie y hasta 8 cuotas.
+
+      </div>
+
+
+      <div class="mensaje info">
+
+        <strong>
+          Sobre 50 UF y hasta 100 UF:
+        </strong>
+
+        25% de pie y hasta 12 cuotas.
+
+      </div>
+
+
+      <div class="mensaje error">
+
+        <strong>
+          Sobre 100 UF:
+        </strong>
+
+        corresponde derivar a sucursal.
+
+      </div>
+
+
+      <span
+        id="estadoUF"
+        class="estado"
+      >
+        Consultando UF...
+      </span>
+
+
+      <div
+        id="contenedorUFManual"
+        class="uf-manual oculto"
+      >
+
+        <div class="campo">
+
+          <label>
+            Valor UF manual
+          </label>
+
+          <div class="dinero">
+
+            <span>$</span>
+
+            <input
+              id="ufManual"
+              placeholder="Ej: 40.000"
+            >
+
+          </div>
+
+        </div>
+
+
+        <button
+          id="usarUFManual"
+          class="secundario"
+        >
+          Usar UF
+        </button>
+
+      </div>
+
+    </section>
+
+
+  </div>
+
+
+
+  <!-- DATOS DEL CLIENTE -->
+
+  <section class="card">
+
+    <h2>
+      2. Datos de la llamada y del cliente
+    </h2>
+
+
+    <p class="subtitulo">
+
+      La información ingresada se utilizará
+      para generar automáticamente el registro
+      de la llamada.
+
+    </p>
+
+
+    <div class="fila3">
+
+
+      <div class="campo">
+
+        <label>
+          CONNID
+        </label>
+
+        <input
+          id="connid"
+          placeholder="Pegar ConnID"
+        >
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Nombre
+        </label>
+
+        <input
+          id="nombre"
+          placeholder="Nombre del cliente"
+        >
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          RUT
+        </label>
+
+        <input
+          id="rut"
+          placeholder="12.345.678-9"
+        >
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="fila3">
+
+
+      <div class="campo">
+
+        <label>
+          N° de serie
+        </label>
+
+        <input
+          id="serie"
+          placeholder="N° de serie"
+        >
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Fecha de nacimiento
+        </label>
+
+        <input
+          id="fechaNacimiento"
+          type="date"
+        >
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Teléfono
+        </label>
+
+        <input
+          id="telefono"
+          placeholder="+56 9..."
+        >
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="fila3">
+
+
+      <div class="campo">
+
+        <label>
+          Correo
+        </label>
+
+        <input
+          id="correo"
+          type="email"
+          placeholder="correo@ejemplo.cl"
+        >
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          N° de cliente
+        </label>
+
+        <input
+          id="numeroCliente"
+          placeholder="Número de cliente"
+        >
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Dirección
+        </label>
+
+        <input
+          id="direccion"
+          placeholder="Dirección"
+        >
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- CALCULADORA -->
+
+  <section class="card">
+
+    <h2>
+      3. Calculadora de convenio
+    </h2>
+
+
+    <p class="subtitulo">
+
+      Ingresa la deuda y,
+      si corresponde,
+      los datos del convenio vigente.
+
+    </p>
+
+
+    <div class="fila2">
+
+
+      <div class="campo">
+
+        <label>
+          Deuda a convenir
+        </label>
+
+
+        <div class="dinero">
+
+          <span>$</span>
+
+          <input
+            id="deuda"
+            inputmode="numeric"
+            placeholder="Ej: 350.000"
+          >
+
+        </div>
+
+      </div>
+
+
+
+      <div class="campo">
+
+        <label>
+          Convenio anterior
+        </label>
+
+
+        <div class="switch">
+
+          <input
+            id="tieneConvenio"
+            type="checkbox"
+          >
+
+          <label for="tieneConvenio">
+            ¿Existe convenio vigente?
+          </label>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- CONVENIO ANTERIOR -->
+
+    <div
+      id="datosConvenioAnterior"
+      class="fila2 oculto"
+    >
+
+
+      <div class="campo">
+
+        <label>
+          Cuotas pendientes
+        </label>
+
+        <input
+          id="cuotasPendientes"
+          type="number"
+          min="1"
+          placeholder="Ej: 6"
+        >
+
+      </div>
+
+
+
+      <div class="campo">
+
+        <label>
+          Valor de cada cuota
+        </label>
+
+
+        <div class="dinero">
+
+          <span>$</span>
+
+          <input
+            id="valorCuotaAnterior"
+            inputmode="numeric"
+            placeholder="Ej: 8.000"
+          >
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div
+      id="errorCalculo"
+      class="mensaje error oculto"
+    >
+    </div>
+
+
+
+    <div class="botones">
+
+      <button
+        id="calcular"
+        class="primario"
+      >
+        Calcular convenio
+      </button>
+
+
+      <button
+        id="limpiarCalculo"
+        class="secundario"
+      >
+        Limpiar cálculo
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- RESULTADOS -->
+
+  <section
+    id="resultados"
+    class="card oculto"
+  >
+
+    <h2>
+      4. Resultado del convenio
+    </h2>
+
+
+    <p class="subtitulo">
+
+      Selecciona la cantidad de cuotas
+      acordada con el cliente.
+
+    </p>
+
+
+    <div
+      id="textoTramo"
+      class="tramo"
+    >
+    </div>
+
+
+
+    <div class="resumen">
+
+
+      <div class="metrica">
+
+        <span>
+          Monto consolidado
+        </span>
+
+        <strong id="montoTotal">
+          $0
+        </strong>
+
+      </div>
+
+
+      <div class="metrica">
+
+        <span id="tituloPie">
+          Pie
+        </span>
+
+        <strong id="montoPie">
+          $0
+        </strong>
+
+      </div>
+
+
+      <div class="metrica">
+
+        <span>
+          Saldo a convenir
+        </span>
+
+        <strong id="saldoConvenio">
+          $0
+        </strong>
+
+      </div>
+
+
+    </div>
+
+
+
+    <h3>
+      Alternativas de cuotas
+    </h3>
+
+
+    <div
+      id="listaCuotas"
+      class="cuotas"
+    >
+    </div>
+
+
+  </section>
+
+
+
+  <!-- REGISTRO FINAL -->
+
+  <section class="card">
+
+    <h2>
+      5. Registro para bloc de notas
+    </h2>
+
+
+    <p class="subtitulo">
+
+      El registro se va completando
+      automáticamente con la información ingresada.
+
+    </p>
+
+
+
+    <div class="campo">
+
+      <label>
+        Observación
+      </label>
+
+      <textarea
+        id="observacion"
+        placeholder="Agregar observación de la atención..."
+      ></textarea>
+
+    </div>
+
+
+
+    <pre id="registro">
+Completa los datos para generar el registro.
+    </pre>
+
+
+
+    <div class="copiar">
+
+
+      <div class="botones">
+
+        <button
+          id="copiarRegistro"
+          class="verde"
+        >
+          Copiar registro de llamada
+        </button>
+
+
+        <button
+          id="nuevaAtencion"
+          class="secundario"
+        >
+          Nueva atención
+        </button>
+
+      </div>
+
+
+
+      <span
+        id="estadoCopiado"
+        class="estado oculto"
+      >
+        Copiado ✓
+      </span>
+
+
+    </div>
+
+  </section>
+
+
+
+  <footer>
+
+    Herramienta de cálculo referencial.
+    Validar siempre la información
+    según los procedimientos vigentes.
+
+  </footer>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =================================================
+   CONFIGURACIÓN
+
+   ESTA ES LA PARTE MÁS IMPORTANTE SI DESPUÉS
+   QUIERES CAMBIAR LAS REGLAS.
+================================================= */
+
+
+const CONFIG = {
+
+  /* Primer tramo */
+
+  limiteTramo1UF: 50,
+
+  porcentajePieTramo1: 0.20,
+
+  maxCuotasTramo1: 8,
+
+
+  /* Segundo tramo */
+
+  limiteMaxUF: 100,
+
+  porcentajePieTramo2: 0.25,
+
+  maxCuotasTramo2: 12,
+
+
+  /* Cuota mínima que se mostrará */
+
+  minCuotas: 3,
+
+
+  /* API para conocer el valor de la UF */
+
+  apiUF:
+    "https://mindicador.cl/api/uf"
+
+};
+
+
+
+/* =================================================
+   VARIABLES
+================================================= */
+
+
+let valorUF = null;
+
+let ultimoCalculo = null;
+
+let cuotaSeleccionada = null;
+
+
+
+/* =================================================
+   FUNCIONES AUXILIARES
+================================================= */
+
+
+function elemento(id) {
+
+  return document.getElementById(id);
+
+}
+
+
+
+function convertirMonto(valor) {
+
+  const limpio =
+    String(valor)
+      .replace(/\D/g, "");
+
+
+  const numero =
+    Number(limpio);
+
+
+  if (!Number.isFinite(numero)) {
+
+    return 0;
+
+  }
+
+
+  return numero;
+
+}
+
+
+
+function moneda(valor) {
+
+  return new Intl.NumberFormat(
+    "es-CL",
+    {
+      style: "currency",
+      currency: "CLP",
+      maximumFractionDigits: 0
+    }
+  ).format(
+    Math.round(valor || 0)
+  );
+
+}
+
+
+
+function formatearInputDinero(input) {
+
+  const numero =
+    input.value
+      .replace(/\D/g, "");
+
+
+  input.value =
+    numero
+      ? Number(numero)
+          .toLocaleString("es-CL")
+      : "";
+
+}
+
+
+
+function fechaChilena(valor) {
+
+  if (!valor) {
+
+    return "";
+
+  }
+
+
+  const partes =
+    valor.split("-");
+
+
+  return (
+    partes[2] +
+    "-" +
+    partes[1] +
+    "-" +
+    partes[0]
+  );
+
+}
+
+
+
+function valorCampo(id) {
+
+  return elemento(id)
+    .value
+    .trim();
+
+}
+
+
+
+/* =================================================
+   PAUTA DE REVISIÓN
+================================================= */
+
+
+function actualizarPauta() {
+
+  const checks =
+    [
+      ...document.querySelectorAll(
+        ".checkRevision"
+      )
+    ];
+
+
+  const revisados =
+    checks.filter(
+      check => check.checked
+    ).length;
+
+
+  elemento("contadorChecks")
+    .textContent =
+      revisados +
+      " de " +
+      checks.length +
+      " revisados";
+
+}
+
+
+
+document
+  .querySelectorAll(".checkRevision")
+  .forEach(
+
+    check => {
+
+      check.addEventListener(
+        "change",
+        actualizarPauta
+      );
+
+    }
+
+  );
+
+
+
+elemento("limpiarPauta")
+  .addEventListener(
+    "click",
+    function () {
+
+      document
+        .querySelectorAll(".checkRevision")
+        .forEach(
+
+          check => {
+
+            check.checked = false;
+
+          }
+
+        );
+
+
+      actualizarPauta();
+
+    }
+  );
+
+
+
+/* =================================================
+   FORMATEAR CAMPOS DE DINERO
+================================================= */
+
+
+[
+  "deuda",
+  "valorCuotaAnterior",
+  "ufManual"
+]
+.forEach(
+
+  id => {
+
+    elemento(id)
+      .addEventListener(
+        "input",
+        function () {
+
+          formatearInputDinero(this);
+
+          actualizarRegistro();
+
+        }
+      );
+
+  }
+
+);
+
+
+
+/* =================================================
+   ACTUALIZACIÓN AUTOMÁTICA DEL REGISTRO
+================================================= */
+
+
+[
+  "connid",
+  "nombre",
+  "rut",
+  "serie",
+  "fechaNacimiento",
+  "telefono",
+  "correo",
+  "numeroCliente",
+  "direccion",
+  "cuotasPendientes",
+  "observacion"
+]
+.forEach(
+
+  id => {
+
+    elemento(id)
+      .addEventListener(
+        "input",
+        actualizarRegistro
+      );
+
+  }
+
+);
+
+
+
+/* =================================================
+   CONVENIO VIGENTE
+================================================= */
+
+
+elemento("tieneConvenio")
+  .addEventListener(
+    "change",
+    function () {
+
+
+      const mostrar =
+        this.checked;
+
+
+      elemento(
+        "datosConvenioAnterior"
+      )
+      .classList
+      .toggle(
+        "oculto",
+        !mostrar
+      );
+
+
+      if (!mostrar) {
+
+        elemento(
+          "cuotasPendientes"
+        ).value = "";
+
+
+        elemento(
+          "valorCuotaAnterior"
+        ).value = "";
+
+      }
+
+
+      ocultarResultados();
+
+      actualizarRegistro();
+
+    }
+  );
+
+
+
+/* =================================================
+   CONSULTA UF
+================================================= */
+
+
+async function cargarUF() {
+
+
+  const estado =
+    elemento("estadoUF");
+
+
+  try {
+
+
+    const respuesta =
+      await fetch(
+        CONFIG.apiUF,
+        {
+          cache: "no-store"
+        }
+      );
+
+
+    if (!respuesta.ok) {
+
+      throw new Error(
+        "No fue posible consultar la UF."
+      );
+
+    }
+
+
+    const datos =
+      await respuesta.json();
+
+
+    if (
+      !datos.serie ||
+      !datos.serie.length
+    ) {
+
+      throw new Error(
+        "UF no disponible."
+      );
+
+    }
+
+
+    valorUF =
+      Number(
+        datos.serie[0].valor
+      );
+
+
+    if (
+      !Number.isFinite(valorUF) ||
+      valorUF <= 0
+    ) {
+
+      throw new Error(
+        "UF inválida."
+      );
+
+    }
+
+
+    estado.textContent =
+      "UF disponible: " +
+      moneda(valorUF);
+
+
+    estado.className =
+      "estado ok";
+
+
+    elemento(
+      "contenedorUFManual"
+    )
+    .classList
+    .add("oculto");
+
+
+  }
+  catch (error) {
+
+
+    valorUF = null;
+
+
+    estado.textContent =
+      "No fue posible consultar la UF automáticamente";
+
+
+    estado.className =
+      "estado advertencia";
+
+
+    elemento(
+      "contenedorUFManual"
+    )
+    .classList
+    .remove("oculto");
+
+  }
+
+}
+
+
+
+/* =================================================
+   UF MANUAL
+================================================= */
+
+
+elemento("usarUFManual")
+  .addEventListener(
+    "click",
+    function () {
+
+
+      const valor =
+        convertirMonto(
+          elemento("ufManual").value
+        );
+
+
+      if (valor <= 0) {
+
+        alert(
+          "Ingresa un valor de UF válido."
+        );
+
+        return;
+
+      }
+
+
+      valorUF = valor;
+
+
+      elemento("estadoUF")
+        .textContent =
+          "UF manual: " +
+          moneda(valorUF);
+
+
+      elemento("estadoUF")
+        .className =
+          "estado ok";
+
+    }
+  );
+
+
+
+/* =================================================
+   ERRORES
+================================================= */
+
+
+function mostrarError(texto) {
+
+  elemento("errorCalculo")
+    .textContent = texto;
+
+
+  elemento("errorCalculo")
+    .classList
+    .remove("oculto");
+
+}
+
+
+
+function limpiarError() {
+
+  elemento("errorCalculo")
+    .textContent = "";
+
+
+  elemento("errorCalculo")
+    .classList
+    .add("oculto");
+
+}
+
+
+
+/* =================================================
+   OCULTAR RESULTADOS
+================================================= */
+
+
+function ocultarResultados() {
+
+  elemento("resultados")
+    .classList
+    .add("oculto");
+
+
+  ultimoCalculo = null;
+
+  cuotaSeleccionada = null;
+
+
+  actualizarRegistro();
+
+}
+
+
+
+/* =================================================
+   CALCULAR CONVENIO
+================================================= */
+
+
+async function calcularConvenio() {
+
+
+  limpiarError();
+
+
+  cuotaSeleccionada = null;
+
+
+  const deuda =
+    convertirMonto(
+      elemento("deuda").value
+    );
+
+
+  if (deuda <= 0) {
+
+    mostrarError(
+      "Ingresa una deuda válida."
+    );
+
+    return;
+
+  }
+
+
+
+  /* ==========================
+     CONVENIO ANTERIOR
+  ========================== */
+
+
+  let saldoConvenioAnterior = 0;
+
+
+  if (
+    elemento("tieneConvenio").checked
+  ) {
+
+
+    const cuotasPendientes =
+      Number(
+        elemento(
+          "cuotasPendientes"
+        ).value
+      );
+
+
+    const valorCuota =
+      convertirMonto(
+        elemento(
+          "valorCuotaAnterior"
+        ).value
+      );
+
+
+    if (
+      !Number.isInteger(
+        cuotasPendientes
+      ) ||
+      cuotasPendientes <= 0
+    ) {
+
+      mostrarError(
+        "Ingresa una cantidad válida de cuotas pendientes."
+      );
+
+      return;
+
+    }
+
+
+    if (valorCuota <= 0) {
+
+      mostrarError(
+        "Ingresa el valor de la cuota del convenio vigente."
+      );
+
+      return;
+
+    }
+
+
+    saldoConvenioAnterior =
+      cuotasPendientes *
+      valorCuota;
+
+  }
+
+
+
+  /* ==========================
+     OBTENER UF
+  ========================== */
+
+
+  if (!valorUF) {
+
+    await cargarUF();
+
+  }
+
+
+  if (!valorUF) {
+
+    mostrarError(
+      "No se puede calcular hasta contar con un valor de UF válido."
+    );
+
+    return;
+
+  }
+
+
+
+  /* ==========================
+     MONTO CONSOLIDADO
+  ========================== */
+
+
+  const montoTotal =
+    deuda +
+    saldoConvenioAnterior;
+
+
+
+  const limite50UF =
+    valorUF *
+    CONFIG.limiteTramo1UF;
+
+
+  const limite100UF =
+    valorUF *
+    CONFIG.limiteMaxUF;
+
+
+
+  /* ==========================
+     MAYOR A 100 UF
+  ========================== */
+
+
+  if (
+    montoTotal >
+    limite100UF
+  ) {
+
+
+    elemento("resultados")
+      .classList
+      .add("oculto");
+
+
+    ultimoCalculo = null;
+
+
+    mostrarError(
+
+      "El monto consolidado (" +
+
+      moneda(montoTotal) +
+
+      ") supera las 100 UF (" +
+
+      moneda(limite100UF) +
+
+      "). Corresponde derivar a sucursal."
+
+    );
+
+
+    actualizarRegistro();
+
+
+    return;
+
+  }
+
+
+
+  /* ==========================
+     DETERMINAR TRAMO
+  ========================== */
+
+
+  let porcentajePie;
+
+  let maximoCuotas;
+
+  let textoTramo;
+
+
+
+  if (
+    montoTotal <=
+    limite50UF
+  ) {
+
+
+    porcentajePie =
+      CONFIG.porcentajePieTramo1;
+
+
+    maximoCuotas =
+      CONFIG.maxCuotasTramo1;
+
+
+    textoTramo =
+      "Hasta 50 UF: " +
+      "20% de pie y hasta 8 cuotas";
+
+
+  }
+  else {
+
+
+    porcentajePie =
+      CONFIG.porcentajePieTramo2;
+
+
+    maximoCuotas =
+      CONFIG.maxCuotasTramo2;
+
+
+    textoTramo =
+      "Sobre 50 UF y hasta 100 UF: " +
+      "25% de pie y hasta 12 cuotas";
+
+  }
+
+
+
+  /* ==========================
+     CÁLCULOS
+  ========================== */
+
+
+  const pie =
+    montoTotal *
+    porcentajePie;
+
+
+  const saldo =
+    montoTotal -
+    pie;
+
+
+
+  ultimoCalculo = {
+
+    deuda:
+      deuda,
+
+    saldoConvenioAnterior:
+      saldoConvenioAnterior,
+
+    montoTotal:
+      montoTotal,
+
+    porcentajePie:
+      porcentajePie,
+
+    pie:
+      pie,
+
+    saldo:
+      saldo,
+
+    maximoCuotas:
+      maximoCuotas,
+
+    textoTramo:
+      textoTramo
+
+  };
+
+
+
+  /* ==========================
+     MOSTRAR RESUMEN
+  ========================== */
+
+
+  elemento("textoTramo")
+    .textContent =
+      textoTramo;
+
+
+  elemento("montoTotal")
+    .textContent =
+      moneda(montoTotal);
+
+
+  elemento("tituloPie")
+    .textContent =
+      "Pie " +
+      Math.round(
+        porcentajePie * 100
+      ) +
+      "%";
+
+
+  elemento("montoPie")
+    .textContent =
+      moneda(pie);
+
+
+  elemento("saldoConvenio")
+    .textContent =
+      moneda(saldo);
+
+
+
+  /* ==========================
+     GENERAR CUOTAS
+  ========================== */
+
+
+  const contenedor =
+    elemento("listaCuotas");
+
+
+  contenedor.innerHTML = "";
+
+
+
+  for (
+    let cantidad = CONFIG.minCuotas;
+    cantidad <= maximoCuotas;
+    cantidad++
+  ) {
+
+
+    const valorCuota =
+      saldo /
+      cantidad;
+
+
+
+    const opcion =
+      document.createElement(
+        "label"
+      );
+
+
+    opcion.className =
+      "cuota";
+
+
+    opcion.innerHTML = `
+
+      <input
+        type="radio"
+        name="cuotaConvenio"
+        value="${cantidad}"
+      >
+
+      <div>
+
+        <span>
+          ${cantidad} cuotas
+        </span>
+
+        <strong>
+          ${moneda(valorCuota)} c/u
+        </strong>
+
+      </div>
+
+    `;
+
+
+
+    const radio =
+      opcion.querySelector(
+        "input"
+      );
+
+
+    radio.addEventListener(
+      "change",
+      function () {
+
+
+        cuotaSeleccionada = {
+
+          cantidad:
+            cantidad,
+
+          valor:
+            valorCuota
+
+        };
+
+
+        document
+          .querySelectorAll(
+            ".cuota"
+          )
+          .forEach(
+
+            item => {
+
+              item.classList
+                .remove(
+                  "seleccionada"
+                );
+
+            }
+
+          );
+
+
+        opcion.classList
+          .add(
+            "seleccionada"
+          );
+
+
+        actualizarRegistro();
+
+      }
+    );
+
+
+
+    contenedor.appendChild(
+      opcion
+    );
+
+  }
+
+
+
+  elemento("resultados")
+    .classList
+    .remove("oculto");
+
+
+  actualizarRegistro();
+
+
+
+  elemento("resultados")
+    .scrollIntoView({
+
+      behavior:
+        "smooth",
+
+      block:
+        "start"
+
+    });
+
+}
+
+
+
+/* =================================================
+   GENERAR REGISTRO
+================================================= */
+
+
+function actualizarRegistro() {
+
+
+  const tieneConvenio =
+    elemento(
+      "tieneConvenio"
+    ).checked;
+
+
+  const lineas = [
+
+    "CONNID: " +
+    valorCampo("connid"),
+
+    "",
+
+    "DATOS CONVENIO:",
+
+    "NOMBRE: " +
+    valorCampo("nombre"),
+
+    "RUT: " +
+    valorCampo("rut"),
+
+    "N° SERIE: " +
+    valorCampo("serie"),
+
+    "FECHA NAC: " +
+    fechaChilena(
+      valorCampo(
+        "fechaNacimiento"
+      )
+    ),
+
+    "TELEFONO: " +
+    valorCampo("telefono"),
+
+    "CORREO: " +
+    valorCampo("correo"),
+
+    "N° DE CLIENTE: " +
+    valorCampo(
+      "numeroCliente"
+    ),
+
+    "DIRECCIÓN: " +
+    valorCampo("direccion"),
+
+    "DEUDA: " +
+    (
+      valorCampo("deuda")
+
+        ? moneda(
+            convertirMonto(
+              valorCampo("deuda")
+            )
+          )
+
+        : ""
+    ),
+
+    "CONVENIO VIGENTE: " +
+    (
+      tieneConvenio
+        ? "SI"
+        : "NO"
+    )
+
+  ];
+
+
+
+  /* ==========================
+     CONVENIO ANTERIOR
+  ========================== */
+
+
+  if (tieneConvenio) {
+
+
+    lineas.push(
+
+      "CUOTAS PENDIENTES: " +
+      valorCampo(
+        "cuotasPendientes"
+      )
+
+    );
+
+
+    lineas.push(
+
+      "VALOR CUOTA CONVENIO VIGENTE: " +
+
+      (
+        valorCampo(
+          "valorCuotaAnterior"
+        )
+
+        ? moneda(
+            convertirMonto(
+              valorCampo(
+                "valorCuotaAnterior"
+              )
+            )
+          )
+
+        : ""
+      )
+
+    );
+
+  }
+
+
+
+  /* ==========================
+     RESULTADO DEL CÁLCULO
+  ========================== */
+
+
+  if (ultimoCalculo) {
+
+
+    lineas.push(
+
+      "SALDO CONVENIO VIGENTE: " +
+
+      (
+        ultimoCalculo
+          .saldoConvenioAnterior > 0
+
+          ? moneda(
+              ultimoCalculo
+                .saldoConvenioAnterior
+            )
+
+          : "NO APLICA"
+      )
+
+    );
+
+
+    lineas.push(
+
+      "MONTO CONSOLIDADO: " +
+
+      moneda(
+        ultimoCalculo
+          .montoTotal
+      )
+
+    );
+
+
+    lineas.push(
+
+      "TRAMO: " +
+
+      ultimoCalculo
+        .textoTramo
+
+    );
+
+
+    lineas.push(
+
+      Math.round(
+        ultimoCalculo
+          .porcentajePie *
+        100
+      ) +
+
+      "% PIE: " +
+
+      moneda(
+        ultimoCalculo
+          .pie
+      )
+
+    );
+
+
+    if (cuotaSeleccionada) {
+
+
+      lineas.push(
+
+        cuotaSeleccionada
+          .cantidad +
+
+        " CUOTAS DE: " +
+
+        moneda(
+          cuotaSeleccionada
+            .valor
+        )
+
+      );
+
+
+    }
+    else {
+
+
+      lineas.push(
+
+        "CUOTAS: PENDIENTE DE SELECCIONAR"
+
+      );
+
+    }
+
+
+  }
+  else {
+
+
+    lineas.push(
+      "MONTO CONSOLIDADO:"
+    );
+
+
+    lineas.push(
+      "PIE:"
+    );
+
+
+    lineas.push(
+      "CUOTAS:"
+    );
+
+  }
+
+
+
+  /* ==========================
+     OBSERVACIÓN
+  ========================== */
+
+
+  lineas.push(
+
+    "OBS: " +
+    valorCampo(
+      "observacion"
+    )
+
+  );
+
+
+
+  elemento("registro")
+    .textContent =
+      lineas.join("\n");
+
+}
+
+
+
+/* =================================================
+   COPIAR REGISTRO
+================================================= */
+
+
+async function copiarRegistro() {
+
+
+  const texto =
+    elemento("registro")
+      .textContent
+      .trim();
+
+
+  try {
+
+
+    await navigator
+      .clipboard
+      .writeText(texto);
+
+
+  }
+  catch (error) {
+
+
+    /* Método alternativo */
+
+    const textarea =
+      document.createElement(
+        "textarea"
+      );
+
+
+    textarea.value =
+      texto;
+
+
+    document.body
+      .appendChild(
+        textarea
+      );
+
+
+    textarea.select();
+
+
+    document.execCommand(
+      "copy"
+    );
+
+
+    textarea.remove();
+
+  }
+
+
+
+  elemento("estadoCopiado")
+    .classList
+    .remove("oculto");
+
+
+  setTimeout(
+
+    function () {
+
+      elemento(
+        "estadoCopiado"
+      )
+      .classList
+      .add("oculto");
+
+    },
+
+    1800
+
+  );
+
+}
+
+
+
+/* =================================================
+   LIMPIAR CÁLCULO
+================================================= */
+
+
+function limpiarCalculo() {
+
+
+  elemento("deuda")
+    .value = "";
+
+
+  elemento("tieneConvenio")
+    .checked = false;
+
+
+  elemento(
+    "cuotasPendientes"
+  )
+  .value = "";
+
+
+  elemento(
+    "valorCuotaAnterior"
+  )
+  .value = "";
+
+
+  elemento(
+    "datosConvenioAnterior"
+  )
+  .classList
+  .add("oculto");
+
+
+  limpiarError();
+
+
+  ocultarResultados();
+
+}
+
+
+
+/* =================================================
+   NUEVA ATENCIÓN
+================================================= */
+
+
+function nuevaAtencion() {
+
+
+  document
+    .querySelectorAll("input")
+    .forEach(
+
+      input => {
+
+
+        if (
+          input.type === "checkbox" ||
+          input.type === "radio"
+        ) {
+
+          input.checked = false;
+
+        }
+        else if (
+          input.id !== "ufManual"
+        ) {
+
+          input.value = "";
+
+        }
+
+      }
+
+    );
+
+
+  elemento("observacion")
+    .value = "";
+
+
+  elemento(
+    "datosConvenioAnterior"
+  )
+  .classList
+  .add("oculto");
+
+
+  limpiarError();
+
+
+  ocultarResultados();
+
+
+  actualizarPauta();
+
+
+  actualizarRegistro();
+
+
+  window.scrollTo({
+
+    top: 0,
+
+    behavior: "smooth"
+
+  });
+
+}
+
+
+
+/* =================================================
+   EVENTOS
+================================================= */
+
+
+elemento("calcular")
+  .addEventListener(
+    "click",
+    calcularConvenio
+  );
+
+
+
+elemento("limpiarCalculo")
+  .addEventListener(
+    "click",
+    limpiarCalculo
+  );
+
+
+
+elemento("copiarRegistro")
+  .addEventListener(
+    "click",
+    copiarRegistro
+  );
+
+
+
+elemento("nuevaAtencion")
+  .addEventListener(
+    "click",
+    nuevaAtencion
+  );
+
+
+
+/* =================================================
+   INICIAR PÁGINA
+================================================= */
+
+
+actualizarPauta();
+
+actualizarRegistro();
+
+cargarUF();
+
+
+</script>
+
+
+</body>
+</html>
